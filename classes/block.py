@@ -13,13 +13,14 @@ class Block:
         self.hash_ = hash_
         self.timestamp = timestamp
 
-        print("Creating new Block...")
-        print(f"index:{self.index},prevHash:{self.prevHash},transactions:{len(self.transactions)},timestamp:{self.timestamp}")
+        if self.hash_ == None:
+            print("Creating new Block...")
+            print(f"index:{self.index},prevHash:{self.prevHash},transactions:{len(self.transactions)},timestamp:{self.timestamp}")
 
-        self._compute_hash()
+            self._compute_hash()
 
-        print("done")
-        print(f"nonce:{self.nonce},hash:{self.hash_}")
+            print("done")
+            print(f"nonce:{self.nonce},hash:{self.hash_}")
 
     @classmethod
     def from_dict(cls,block: dict):
@@ -28,7 +29,7 @@ class Block:
             prevHash = block['prevHash']
             transactions = []
             for transaction in block['transactions']:
-                transaction.append(Transaction.from_dict(transaction))
+                transactions.append(Transaction.from_dict(transaction))
             nonce = block['nonce']
             hash_ = block['hash']
             timestamp = block['timestamp']
@@ -39,7 +40,7 @@ class Block:
             return None
 
     def _compute_hash(self):
-        self.hash = sha256(str(self)).hexdigest()
+        self.hash_ = sha256(str(self)).hexdigest()
 
     def __str__(self):
         return "{" + f"index:{self.index},prevHash:{self.prevHash},transactions:{list_to_str(self.transactions)},timestamp:{self.timestamp},hash:{self.hash_}" + "}"

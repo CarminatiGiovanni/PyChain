@@ -9,7 +9,7 @@ app = Flask(__name__, template_folder="templates", static_folder="static")
 
 @app.route('/',methods=['POST','GET'])
 def entry_page():
-    return jsonify(blockchain = b.as_dict())
+    return jsonify(blockchain = b.to_dict())
 
 if __name__ == '__main__':
     try:
