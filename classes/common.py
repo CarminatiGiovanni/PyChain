@@ -22,7 +22,7 @@ def list_to_dict(l: list) -> list[dict]:
             list_to_dict(sub_list)
 
     def call_as_dict(o):
-        return o.ad_dict()
+        return o.to_dict()
 
     dict_list_iter = map(call_as_dict, l)
     list_dict = list(dict_list_iter)
