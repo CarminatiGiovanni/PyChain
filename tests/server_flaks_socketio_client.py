@@ -3,10 +3,7 @@ import flask_socketio as fs
 import socketio as sc
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret!'
-
 socketio = fs.SocketIO(app)
-
 clientio = sc.Client()
 
 @clientio.event
@@ -34,5 +31,4 @@ def connet_client():
 
 if __name__ == '__main__':
     socketio.run(app, port= 4000, debug=True)
-
-# pip install eventlet
+    

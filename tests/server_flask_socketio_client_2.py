@@ -1,13 +1,9 @@
-from distutils.log import debug
 from flask import Flask
 import flask_socketio as fs
 import socketio as sc
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret!'
-
 socketio = fs.SocketIO(app)
-
 clientio = sc.Client()
 
 @clientio.event
