@@ -1,5 +1,5 @@
 from flask import Flask
-from .io import serverio1, clientio1
+from io import serverio1, clientio1
 
 app = Flask(__name__)
 
