@@ -1,8 +1,8 @@
 import flask_socketio as fs
-from ..server_flask_socketio_client import app
+import tests.server_flask_socketio_client as tsf
 
 
-serverio1 = fs.SocketIO(app)
+serverio1 = fs.SocketIO(tsf.app)
 
 
 @serverio1.event
