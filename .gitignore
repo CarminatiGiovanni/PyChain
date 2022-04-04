@@ -1,5 +1,5 @@
 /.idea
 /node_modules
-/__pychache__
 __pychache__
 /venv
+.pyc
