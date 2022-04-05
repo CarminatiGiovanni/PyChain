@@ -1,7 +1,21 @@
 from flask import Flask
-from server_client_io import serverio1, clientio1
+import flask_socketio as fs
+import socketio as sc
 
 app = Flask(__name__)
+
+clientio = sc.Client()
+serverio = fs.SocketIO(app)
+
+
+@clientio.event
+def connect():
+    print("Connected to the server!!!")
+
+
+@serverio.event
+def connect():
+    print('a user has connected')
 
 
 @app.route('/')
@@ -12,13 +26,13 @@ def main():
 @app.route('/connect')
 def connect_client():
     try:
-        clientio1.connect('http://localhost:5000/')
+        clientio.connect('http://localhost:5000/')
         print('client connected')
-        return "Client connected",200
+        return "Client connected", 200
     except Exception as e:
         return f"Client not connected: {str(e)}", 500
 
 
 if __name__ == '__main__':
-    serverio1.run(app, port=4000, debug=True)
+    serverio.run(app, port=4000, debug=True)
     
