@@ -1,5 +1,6 @@
 from flask import request, jsonify
 from . import main
+from ..globals import b
 
 from socketio import Client
 
@@ -8,7 +9,7 @@ clientio = Client()
 @main.route('/',methods=['GET','POST'])
 def index():
     """ main form """
-    return jsonify(hello = 'world')
+    return jsonify(blockchain = b.to_dict())
 
 
 @main.route('/connect',methods=['GET'])

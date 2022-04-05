@@ -1,5 +1,5 @@
 from flask import Flask, jsonify
-from config import PORT, HOST
+from app.config import PORT, HOST
 from globals import b
 from routes import *
 

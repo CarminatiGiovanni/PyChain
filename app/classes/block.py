@@ -1,7 +1,6 @@
 from time import time
 from hashlib import sha256
-from .common import list_to_str, list_to_dict
-from .transaction import Transaction
+from . import list_to_str, list_to_dict, Transaction
 
 
 class Block:

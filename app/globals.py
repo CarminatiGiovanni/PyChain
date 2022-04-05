@@ -1,5 +1,5 @@
 from classes.blockchain import Blockchain
-from config import nodes
+from app.config import nodes
 
 b = Blockchain()  # instantiate the Blockchain object
 # b = Blockchain.from_dict(test_dict)
