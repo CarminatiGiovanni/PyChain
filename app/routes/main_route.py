@@ -9,7 +9,7 @@ clientio = Client()
 @main.route('/',methods=['GET','POST'])
 def index():
     """ main form """
-    return jsonify(blockchain = b.to_dict())
+    return b.to_dict(), 200
 
 
 @main.route('/connect',methods=['GET'])
