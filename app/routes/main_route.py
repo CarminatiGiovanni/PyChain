@@ -1,7 +1,7 @@
 from flask import request, jsonify
 from . import main
 from ..globals import b
-from server import clientio
+from .. import clientio
 
 
 @main.route('/', methods=['GET', 'POST'])
