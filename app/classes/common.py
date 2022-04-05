@@ -1,4 +1,4 @@
-def list_to_str(l: list):
+def list_to_str(l: list) -> str:
     if len(l) == 0:
         return "[]"
     if type(l[0]) == list:

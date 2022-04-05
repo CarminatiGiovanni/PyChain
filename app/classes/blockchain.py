@@ -1,4 +1,5 @@
-from . import list_to_str, list_to_dict, Block
+from .common import list_to_str, list_to_dict
+from .block import Block
 
 
 class Blockchain:
