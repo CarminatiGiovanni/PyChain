@@ -9,6 +9,7 @@ def index():
     """ main form """
     return b.to_dict(), 200
 
+
 @main.route('/connect', methods=['GET'])
 def connect_():
     clientios.register_nodes(NETWORK_NODES)
