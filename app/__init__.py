@@ -1,18 +1,15 @@
 from flask import Flask
 from flask_socketio import SocketIO
-from socketio import Client
+from .client_ios import ClientIOS
+from .globals import NETWORK_NODES
 
-clientio = Client()
+clientios: ClientIOS = ClientIOS()
 
-serverio = SocketIO()
+serverio: SocketIO = SocketIO()
 
 
 def before_first_request():
-    try:
-        # clientio.connect('http://localhost:4000')
-        print('Client connected')
-    except Exception as e:
-        print(str(e))
+    clientios.register_nodes(NETWORK_NODES)
 
 
 def create_app(debug=False, template_folder="", static_folder=""):
