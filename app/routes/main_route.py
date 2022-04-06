@@ -16,6 +16,6 @@ def connect_():
     return "OK", 200
 
 
-@main.route('/diagnostic/socket_connection', methods=['GET','POST'])
+@main.route('/diagnostic/socket_connection', methods=['GET', 'POST'])
 def socket_connection():
     return clientios.to_dict(), 200

@@ -7,7 +7,7 @@ class ClientIOS:
         for node in network_nodes:
             clientio = Client()
             try:
-                clientio.connect(f"http://{node}:3000")
+                clientio.connect(f"http://{node}/")
                 self.ios.append(clientio)
             except Exception as e:
                 print("impossible connect to " + node)
@@ -17,7 +17,7 @@ class ClientIOS:
         for node in network_nodes:
             clientio = Client()
             try:
-                clientio.connect(f"http://{node}:3000")
+                clientio.connect(f"http://{node}/")
                 self.ios.append(clientio)
             except Exception as e:
                 print("impossible connect to " + node)
