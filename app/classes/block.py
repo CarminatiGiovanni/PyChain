@@ -13,7 +13,7 @@ class Block:
         self.hash_ = hash_
         self.timestamp = timestamp
 
-        if self.hash_ is not None:
+        if self.hash_ is None:
             print("Creating new Block...")
             print(f"index:{self.index},prevHash:{self.prevHash},transactions:{len(self.transactions)},timestamp:{self.timestamp}")
 
