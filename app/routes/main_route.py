@@ -14,3 +14,8 @@ def index():
 def connect_():
     clientios.register_nodes(NETWORK_NODES)
     return "OK", 200
+
+
+@main.route('/diagnostic/socket_connection', methods=['GET','POST'])
+def socket_connection():
+    return clientios.to_dict(), 200

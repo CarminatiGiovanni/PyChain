@@ -25,3 +25,9 @@ class ClientIOS:
     def emit(self, call, message):
         for c in self.ios:
             c.emit(call, message)
+
+    def to_dict(self) -> dict:
+        d: dict = {}
+        for c in self.ios:
+            d[c.connection_url] = c.sid
+        return d
