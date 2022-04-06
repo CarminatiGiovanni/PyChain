@@ -8,7 +8,7 @@ test_dict = dict(blockchain=[
     ]},
     {'index': 1, "prevHash": 'firstHash829', 'hash': "oTHEhASH", 'timestamp': 5.00, 'nonce': 34, 'transactions': [
         {'content_type': 'text', 'author': 'M. L. King', 'title': 'I have a dream', 'value': 'That one day.....', "description": "Discorso vs leggi raziali", "timestamp": 5.2},
-        {'content_type': 'text', 'author': 'G. Leopardi', 'title': 'L\'infinito', 'value': 'Sempre caro mi fu quest\'ermo colle,\ne questa siepe, che da tanta parte\ndell\'ultimo orizzonte il guardo esclude.',"description": "Sonetto di G. Leopardi", "timestamp": 5.3}
+        {'content_type': 'text', 'author': 'G. Leopardi', 'title': 'L\'infinito', 'value': 'Sempre caro mi fu quest\'ermo colle,\ne questa siepe, che da tanta parte\ndell\'ultimo orizzonte il guardo esclude.', "description": "Sonetto di G. Leopardi", "timestamp": 5.3}
     ]},
 ])
 

@@ -1,5 +1,5 @@
 from app import create_app, serverio
-from app.config import PORT, HOST
+from app.config import PORT
 
 app = create_app(debug=True, template_folder="templates", static_folder="static")
 

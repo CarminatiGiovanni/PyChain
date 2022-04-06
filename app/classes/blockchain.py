@@ -8,7 +8,7 @@ class Blockchain:
         self.chain = []
 
     @classmethod
-    def from_dict(cls, blockchain: list[Block] or dict ):
+    def from_dict(cls, blockchain: list[Block] or dict):
         if type(blockchain) == list:
             chain = blockchain
         elif type(blockchain) == dict:
