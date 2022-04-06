@@ -1,3 +1,6 @@
+from .classes.blockchain import Blockchain
+from .config import nodes
+
 test_dict = dict(blockchain=[
     {'index': 0, "prevHash": None, 'hash': "firstHash829", 'timestamp': 4.00, 'nonce': 0, 'transactions': [
         {'sender': "giovanni", 'receiver': 'Pietro', 'value': 100, 'timestamp': 2.0},
@@ -8,3 +11,8 @@ test_dict = dict(blockchain=[
         {'sender': "Papa", 'receiver': 'Nonna', 'value': 410, 'timestamp': 5.5}
     ]},
 ])
+
+# b = Blockchain()  # instantiate the Blockchain object
+b = Blockchain.from_dict(test_dict)
+NETWORK_NODES: list[str] = nodes  # where all the other chains url are stored
+pool_pending_transactions: list = []

@@ -3,3 +3,6 @@
     - flask-socketio
     - eventlet
     - socketio
+
+# edit for each server:
+    - config.ini
