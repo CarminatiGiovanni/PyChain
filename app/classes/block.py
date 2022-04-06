@@ -5,7 +5,7 @@ from .transaction import Transaction
 
 
 class Block:
-    def __init__(self, index: int, prevHash: str, transactions: list[Transaction], nonce = 0, hash_ = None, timestamp = float(time())):
+    def __init__(self, index: int, prevHash: str, transactions: list[Transaction], nonce=0, hash_=None, timestamp=float(time())):
         self.index = index
         self.prevHash = prevHash
         self.transactions = transactions
@@ -13,7 +13,7 @@ class Block:
         self.hash_ = hash_
         self.timestamp = timestamp
 
-        if self.hash_ == None:
+        if self.hash_ is not None:
             print("Creating new Block...")
             print(f"index:{self.index},prevHash:{self.prevHash},transactions:{len(self.transactions)},timestamp:{self.timestamp}")
 
@@ -23,7 +23,7 @@ class Block:
             print(f"nonce:{self.nonce},hash:{self.hash_}")
 
     @classmethod
-    def from_dict(cls,block: dict):
+    def from_dict(cls, block: dict):
         try:
             index = block['index']
             prevHash = block['prevHash']
@@ -34,7 +34,7 @@ class Block:
             hash_ = block['hash']
             timestamp = block['timestamp']
 
-            return Block(index,prevHash,transactions,nonce,hash_,timestamp)
+            return Block(index, prevHash, transactions, nonce, hash_, timestamp)
 
         except KeyError:
             return None
