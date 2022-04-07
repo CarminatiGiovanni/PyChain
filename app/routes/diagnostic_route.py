@@ -22,4 +22,4 @@ def socket_connection():
 
 @diagnostic.route('/transaction_pool', methods=['GET', 'POST'])
 def transaction_pool():
-    return [], 200
+    return {'transaction\'s pool': []}, 200
