@@ -38,6 +38,8 @@ def add_transaction():
         t = Transaction(content_type, author, title, value, description, time())
         pool_pending_transactions.append(t)
 
+        clientios.emit("new_transaction", t.to_dict())
+
         return "Transaction added to the pool", 200
     except Exception as e:
         print(str(e))

@@ -23,3 +23,14 @@ class Transaction:
 
     def to_dict(self):
         return {'content_type': self.content_type, 'author': self.author, 'title': self.title, 'value': self.value, "description": self.description, "timestamp": self.timestamp}
+
+    def __eq__(self, t):
+        if self.timestamp != t.timestamp \
+                or self.content_type != t.content_type \
+                or self.author != t.author \
+                or self.title != t.title \
+                or self.value != t.value \
+                or self.description != t.description:
+            return False
+        else:
+            return True
