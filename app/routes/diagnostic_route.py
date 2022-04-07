@@ -1,11 +1,11 @@
 from flask import request, jsonify
-from . import main
+from . import diagnostic
 from ..globals import b, NETWORK_NODES
 from .. import clientios
 
 
-@main.route('/', methods=['GET', 'POST'])
-def index():
+@diagnostic.route('/blockchain', methods=['GET', 'POST'])
+def blockchain():
     """ main form """
     try:
         print(b.to_dict())
@@ -15,14 +15,11 @@ def index():
         return str(e), 200
 
 
-@main.route('/connect', methods=['GET'])
-def connect_():
-    clientios.register_nodes(NETWORK_NODES)
-    return "OK", 200
-
-
-'''
-@main.route('/diagnostic/socket_connection', methods=['GET', 'POST'])
+@diagnostic.route('/socket_connection', methods=['GET', 'POST'])
 def socket_connection():
     return clientios.to_dict(), 200
-'''
+
+
+@diagnostic.route('/transaction_pool', methods=['GET', 'POST'])
+def transaction_pool():
+    return [], 200
