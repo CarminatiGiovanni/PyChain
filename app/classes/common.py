@@ -31,8 +31,9 @@ def list_to_dict(given_list: list) -> list[dict]:
 
 
 class TransactionPoolList(list):
-    def __init__(self, appendCallback=None):
+    def __init__(self, appendCallback, pool=[]):
         super().__init__()
+        super().extend(pool)
         self.__appendCallback = appendCallback #append callback must be a function and receive as argument the transaction
 
     def append(self, t):

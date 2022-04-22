@@ -1,5 +1,7 @@
 from .classes.blockchain import Blockchain
 from .config import nodes
+from .classes import TransactionPoolList
+from .poolAppendHandler import poolAppendHandler
 
 test_dict = dict(blockchain=[
     {'index': 0, "prevHash": None, 'hash': "firstHash829", 'timestamp': 4.00, 'nonce': 0, 'transactions': [
@@ -14,5 +16,5 @@ test_dict = dict(blockchain=[
 
 # b = Blockchain()  # instantiate the Blockchain object
 b = Blockchain.from_dict(test_dict)
-NETWORK_NODES: list[str] = nodes  # where all the other chains url are stored
+NETWORK_NODES: TransactionPoolList = TransactionPoolList(lambda t: poolAppendHandler(t), nodes)  # where all the other chains url are stored
 pool_pending_transactions: list = []
