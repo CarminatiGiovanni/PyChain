@@ -30,6 +30,19 @@ def list_to_dict(given_list: list) -> list[dict]:
     return list_dict
 
 
+class TransactionPoolList(list):
+    def __init__(self, appendCallback=None):
+        super().__init__()
+        self.__appendCallback = appendCallback #append callback must be a function and receive as argument the transaction
+
+    def append(self, t):
+        super().append(t)
+        try:
+            self.__appendCallback(t)
+        except:
+            pass
+
+
 '''
 models A:
     def __init__(self,n):
