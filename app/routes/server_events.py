@@ -20,4 +20,4 @@ def new_transaction(transaction):
     t = Transaction.from_dict(transaction)
     if t not in pool_pending_transactions:
         pool_pending_transactions.append(t)
-        clientios.emit('new_transaction',transaction)
+        clientios.emit('new_transaction', transaction)

@@ -8,7 +8,7 @@ class Block:
     def __init__(self, index: int, prevHash: str, transactions: list[Transaction], nonce=0, hash_=None, timestamp=float(time())):
         self.index = index
         self.prevHash = prevHash
-        self.transactions = transactions
+        self.transactions = transactions # TODO: check the transaction length
         self.nonce = nonce
         self.hash_ = hash_
         self.timestamp = timestamp
