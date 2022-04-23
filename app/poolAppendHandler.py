@@ -1,6 +1,7 @@
-from .classes import Transaction
-from .globals import NETWORK_NODES
+from .classes import Transaction, TransactionPoolList
+from .globals import *
 
 
 def poolAppendHandler(t: Transaction):
-    print(len(NETWORK_NODES))
+    print(len(globals.NETWORK_NODES))
+    pass

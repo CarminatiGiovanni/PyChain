@@ -14,7 +14,7 @@ def list_to_str(given_list: list) -> str:
     return str(list_str)
 
 
-def list_to_dict(given_list: list) -> list[dict]:
+def list_to_dict(given_list: list) -> list:
     if len(given_list) == 0:
         return []
     if type(given_list[0]) == list:

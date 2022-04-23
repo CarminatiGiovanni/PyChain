@@ -10,7 +10,6 @@ from time import time
 def index():
     """ main form """
     try:
-        print(b.to_dict())
         return b.to_dict(), 200
     except Exception as e:
         print(str(e))

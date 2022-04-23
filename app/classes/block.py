@@ -5,7 +5,7 @@ from .transaction import Transaction
 
 
 class Block:
-    def __init__(self, index: int, prevHash: str, transactions: list[Transaction], nonce=0, hash_=None, timestamp=float(time())):
+    def __init__(self, index: int, prevHash: str, transactions: list, nonce=0, hash_=None, timestamp=float(time())):
         self.index = index
         self.prevHash = prevHash
         self.transactions = transactions # TODO: check the transaction length
