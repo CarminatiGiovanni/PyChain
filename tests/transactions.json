@@ -1,0 +1,23 @@
+[
+  {
+    "content_type":"text",
+    "author":"Carminati Giovanni",
+    "title":"test1",
+    "value":"this is only a simple test",
+    "description":"this is a JSON requet for the server"
+  },
+  {
+    "content_type":"text",
+    "author":"Carminati Giovanni",
+    "title":"test2",
+    "value":"this is only a simple test",
+    "description":"this is a JSON requet for the server"
+  },
+  {
+    "content_type":"text",
+    "author":"Carminati Giovanni",
+    "title":"test3",
+    "value":"this is only a simple test",
+    "description":"this is a JSON requet for the server"
+  }
+]
