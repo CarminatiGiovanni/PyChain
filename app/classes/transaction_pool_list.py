@@ -30,7 +30,7 @@ class TransactionPoolList(list):
                 newBlock_transactions.append(self[i])
 
             ocl = GLOBALS.b.__len__()  # old chain length
-            newBlock = Block(ocl, GLOBALS.b.chain[ocl - 1].hash, newBlock_transactions)
+            newBlock = Block(ocl, GLOBALS.b.chain[ocl - 1].hash_, newBlock_transactions)
 
             sleep(DELAY_MILLISECONDS)  # FIXME: check if there is a better way to sleep
 
