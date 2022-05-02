@@ -11,6 +11,9 @@ class Blockchain:
     def __init__(self):
         self.chain = []
 
+    def __len__(self):
+        return len(self.chain)
+
     @classmethod
     def from_dict(cls, blockchain: list or dict):
         if type(blockchain) == list:

@@ -1,7 +1,7 @@
 from flask_socketio import emit, join_room, leave_room
 from .. import serverio
 from ..classes import Transaction, Block, Blockchain
-from ..globals import pool_pending_transactions, b
+from ..GLOBALS import pool_pending_transactions, b
 from .. import clientios
 
 

@@ -1,6 +1,6 @@
 from flask import request, jsonify
 from . import main
-from ..globals import b, NETWORK_NODES, pool_pending_transactions
+from ..GLOBALS import b, NETWORK_NODES, pool_pending_transactions
 from .. import clientios
 from ..classes.transaction import Transaction
 from time import time

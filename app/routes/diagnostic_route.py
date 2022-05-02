@@ -1,6 +1,6 @@
 from flask import request, jsonify
 from . import diagnostic
-from ..globals import b, NETWORK_NODES, pool_pending_transactions
+from ..GLOBALS import b, NETWORK_NODES, pool_pending_transactions
 from .. import clientios
 from ..classes.common import list_to_dict
 

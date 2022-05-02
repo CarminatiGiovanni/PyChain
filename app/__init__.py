@@ -4,7 +4,7 @@ from .client_ios import ClientIOS
 
 clientios: ClientIOS = ClientIOS()
 
-from .globals import NETWORK_NODES
+from .GLOBALS import NETWORK_NODES
 
 serverio: SocketIO = SocketIO()
 
