@@ -28,31 +28,3 @@ def list_to_dict(given_list: list) -> list:
     list_dict = list(dict_list_iter)
 
     return list_dict
-
-
-class TransactionPoolList(list):
-    def __init__(self, appendCallback, pool=[]):
-        super().__init__()
-        super().extend(pool)
-        self.__appendCallback = appendCallback #append callback must be a function and receive as argument the transaction
-
-    def append(self, t):
-        super().append(t)
-        try:
-            self.__appendCallback(t)
-        except:
-            pass
-
-
-'''
-models A:
-    def __init__(self,n):
-        self.n = n
-
-    def __str__(self):
-        return str(self.n)
-
-l = [A(1),A(2),A(3)]
-
-print(type(list_to_str(l)))
-'''
