@@ -4,6 +4,10 @@ from .block import Block
 
 class Blockchain:
 
+    @classmethod
+    def BLOCK_SIZE(cls):
+        return 2
+
     def __init__(self):
         self.chain = []
 
@@ -30,6 +34,3 @@ class Blockchain:
 
     def to_dict(self) -> dict:
         return {'blockchain': list_to_dict(self.chain)}
-
-    def __del__(self):
-        print('Del called!!')
