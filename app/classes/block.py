@@ -40,10 +40,13 @@ class Block:
             return None
 
     def _compute_hash(self):
-        self.hash_ = sha256(str(self)).hexdigest()
+        self.hash_ = sha256(self.__str_for_hash().encode('utf-8')).hexdigest()
 
     def __str__(self):
         return "{" + f"index:{self.index},prevHash:{self.prevHash},transactions:{list_to_str(self.transactions)},timestamp:{self.timestamp},hash:{self.hash_}" + "}"
+
+    def __str_for_hash(self):
+        return "{" + f"index:{self.index},prevHash:{self.prevHash},transactions:{list_to_str(self.transactions)},timestamp:{self.timestamp}" + "}"
 
     def to_dict(self):
         return {'index': self.index, 'prevHash': self.prevHash, 'transactions': list_to_dict(self.transactions), 'timestamp': self.timestamp, "hash": self.hash_}
