@@ -1,7 +1,7 @@
 from flask_socketio import emit, join_room, leave_room
 from .. import serverio
-from ..classes.transaction import Transaction
-from ..globals import pool_pending_transactions
+from ..classes import Transaction, Block, Blockchain
+from ..globals import pool_pending_transactions, b
 from .. import clientios
 
 
@@ -21,3 +21,38 @@ def new_transaction(transaction):
     if t not in pool_pending_transactions:
         pool_pending_transactions.append(t)
         clientios.emit('new_transaction', transaction)
+
+
+@serverio.on('new_block')
+def new_block_(block):
+    new_block = Block.from_dict(block)
+
+    if new_block in b.chain:
+        return
+
+    if new_block.index < b.chain.__len__():
+        return
+    elif new_block.index > b.chain.__len__():
+        # TODO: implement when node is not updated to the new blockchain length
+        pass
+    else:
+        # check if transactions are in the pool + transactions length + hash
+        if not block_check(new_block):
+            return
+
+        b.chain.append(new_block)
+        clientios.emit("new_block",new_block.to_dict())
+
+
+def block_check(block: Block):
+    if block.transactions.__len__() != Blockchain.BLOCK_SIZE():
+        return False
+
+    for t in block.transactions:
+        if t not in pool_pending_transactions:
+            return False
+
+    if b.chain[len(b.chain)-1].hash != block.prevHash:
+        return False
+
+    return True
