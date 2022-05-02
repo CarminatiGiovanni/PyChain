@@ -30,10 +30,10 @@ class TransactionPoolList(list):
                 newBlock_transactions.append(self[i])
 
             ocl = GLOBALS.b.__len__()  # old chain length
-            print("error here")
+
             newBlock = Block(ocl, GLOBALS.b.chain[ocl - 1].hash_, newBlock_transactions)
-            print("ok")
-            sleep(DELAY_MILLISECONDS)  # FIXME: check if there is a better way to sleep
+
+            sleep(DELAY_MILLISECONDS / 1000)  # FIXME: check if there is a better way to sleep
 
             if len(GLOBALS.b.chain) == newBlock.index:
                 GLOBALS.b.chain.append(newBlock)  # append the new block
