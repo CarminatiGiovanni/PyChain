@@ -37,3 +37,9 @@ class Blockchain:
 
     def to_dict(self) -> dict:
         return {'blockchain': list_to_dict(self.chain)}
+
+    def is_valid(self) -> bool:
+        for i in range(1,len(self)):
+            if self.chain[i-1].hash_ != self.chain[i].prevHash:
+                return False
+        return True
