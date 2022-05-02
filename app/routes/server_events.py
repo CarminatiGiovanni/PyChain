@@ -28,7 +28,7 @@ def new_block_(block):
     new_block: Block = Block.from_dict(block)
     print(str(new_block))
 
-    if new_block == None:
+    if new_block is None:
         print('ERROR new block is None')
         return
 
