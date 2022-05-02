@@ -23,7 +23,7 @@ class TransactionPoolList(list):
         # with the PoET
 
         if len(self) >= Blockchain.BLOCK_SIZE():
-            DELAY_MILLISECONDS = random.randint(0, 3000)  # 0 to 3000 ms
+            DELAY_MILLISECONDS: float = random.randint(0, 3000) / 1000.0  # 0 to 3000 ms
             newBlock_transactions = []
             for i in range(Blockchain.BLOCK_SIZE()):
                 # takes two transaction to insert in the block
@@ -33,7 +33,7 @@ class TransactionPoolList(list):
 
             newBlock = Block(ocl, GLOBALS.b.chain[ocl - 1].hash_, newBlock_transactions)
 
-            sleep(DELAY_MILLISECONDS / 1000)  # FIXME: check if there is a better way to sleep
+            sleep(DELAY_MILLISECONDS)  # FIXME: check if there is a better way to sleep
 
             if len(GLOBALS.b.chain) == newBlock.index:
                 GLOBALS.b.chain.append(newBlock)  # append the new block
