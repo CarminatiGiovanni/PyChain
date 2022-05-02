@@ -14,13 +14,14 @@ class Block:
         self.timestamp = timestamp
 
         if self.hash_ is None:
+            print("---------------------------------------------")
             print("Creating new Block...")
             print(f"index:{self.index},prevHash:{self.prevHash},transactions:{len(self.transactions)},timestamp:{self.timestamp}")
 
             self._compute_hash()
 
-            print("done")
             print(f"nonce:{self.nonce},hash:{self.hash_}")
+            print("---------------------------------------------")
 
     @classmethod
     def from_dict(cls, block: dict):
@@ -36,7 +37,7 @@ class Block:
 
             return Block(index, prevHash, transactions, nonce, hash_, timestamp)
 
-        except KeyError:
+        except KeyError as e:
             return None
 
     def _compute_hash(self):
@@ -46,7 +47,7 @@ class Block:
         return "{" + f"index:{self.index},prevHash:{self.prevHash},transactions:{list_to_str(self.transactions)},timestamp:{self.timestamp},hash:{self.hash_}" + "}"
 
     def __str_for_hash(self):
-        return "{" + f"index:{self.index},prevHash:{self.prevHash},transactions:{list_to_str(self.transactions)},timestamp:{self.timestamp}" + "}"
+        return "{" + f"index:{self.index},prevHash:{self.prevHash},transactions:{list_to_str(self.transactions)},timestamp:{self.timestamp},nonce:{self.nonce}" + "}"
 
     def to_dict(self):
-        return {'index': self.index, 'prevHash': self.prevHash, 'transactions': list_to_dict(self.transactions), 'timestamp': self.timestamp, "hash": self.hash_}
+        return {'index': self.index, 'prevHash': self.prevHash, 'transactions': list_to_dict(self.transactions), 'timestamp': self.timestamp, "hash": self.hash_, "nonce":self.nonce}
