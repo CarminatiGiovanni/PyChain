@@ -25,7 +25,12 @@ def new_transaction(transaction):
 
 @serverio.on('new_block')
 def new_block_(block):
-    new_block = Block.from_dict(block)
+    new_block: Block = Block.from_dict(block)
+    print(str(new_block))
+
+    if new_block == None:
+        print('ERROR new block is None')
+        return
 
     if new_block in b.chain:
         return
