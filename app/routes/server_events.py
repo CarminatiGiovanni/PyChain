@@ -24,7 +24,6 @@ def new_transaction(transaction):
 @serverio.on('new_block')
 def new_block_(block):
     new_block: Block = Block.from_dict(block)
-    print(str(new_block))
 
     if new_block is None:
         print('ERROR new block is None')
@@ -46,7 +45,7 @@ def new_block_(block):
         for t in new_block.transactions:
             try:
                 pool_pending_transactions.remove(t)
-                print(f"removed transaction: ")
+                print(f"removed transaction: {t.title}")
             except ValueError:
                 pass
 
