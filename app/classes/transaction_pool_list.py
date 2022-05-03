@@ -1,5 +1,8 @@
-from . import Block, Blockchain, Transaction
+from . import Block, Blockchain
 from .. import clientios, GLOBALS
+# from ..routes import consensus_routine
+import requests as r
+from random import randint
 import random
 from time import sleep
 
@@ -38,3 +41,22 @@ class TransactionPoolList(list):
 
                 clientios.emit("new_block", newBlock.to_dict())  # broadcast newBlockToOthers
                 GLOBALS.b.chain.append(newBlock)  # append the new block
+
+                consensus_routine()
+
+
+def consensus_routine():
+    # call is valid
+    if not GLOBALS.b.is_valid():
+
+        new_blockchain_dict = r.get(GLOBALS.NETWORK_NODES[randint(0,len(GLOBALS.NETWORK_NODES) -1)])
+
+        GLOBALS.b.copy(Blockchain.from_dict(new_blockchain_dict))
+
+    else:
+        # ask for the blockchain length
+        pass
+
+    # broadcast transaction pool
+    # join other nodes transaction pool
+

@@ -1,4 +1,4 @@
-from .classes import Blockchain, TransactionPoolList
+from .classes import Blockchain
 from .config import nodes
 
 NETWORK_NODES = nodes
@@ -17,5 +17,8 @@ test_dict = dict(blockchain=[
 '''
 
 b = Blockchain()  # instantiate the Blockchain object
+
+from .classes import TransactionPoolList
+
 # b = Blockchain.from_dict(test_dict)
 pool_pending_transactions: TransactionPoolList = TransactionPoolList()  # where all the other chains url are stored

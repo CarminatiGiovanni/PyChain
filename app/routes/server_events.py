@@ -1,6 +1,7 @@
 from .. import serverio, clientios
 from ..classes import Transaction, Block
 from ..GLOBALS import pool_pending_transactions, b
+from ..classes import consensus_routine
 
 
 @serverio.on('message')
@@ -53,6 +54,7 @@ def new_block_(block):
         b.chain.append(new_block)
         clientios.emit("new_block", new_block.to_dict())
 
+        consensus_routine()
 
 def block_check(block: Block):
     if block.transactions.__len__() != b.BLOCK_SIZE():

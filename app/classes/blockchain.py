@@ -8,6 +8,9 @@ class Blockchain:
     def BLOCK_SIZE(cls):
         return 2
 
+    def copy(self, blockchain):
+        self.chain = blockchain.chain
+
     def last_block(self) -> Block:
         return self.chain[len(self)-1]
 
