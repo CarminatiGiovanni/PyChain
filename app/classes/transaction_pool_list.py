@@ -39,6 +39,7 @@ class TransactionPoolList(list):
                     try:
                         self.remove(t)
                         print(f"transaction: {t.title} has been removed from transactions pool")
+                        print(len(self))
                     except ValueError:
                         pass
 

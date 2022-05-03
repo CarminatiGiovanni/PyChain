@@ -46,6 +46,7 @@ def new_block_(block):
             try:
                 pool_pending_transactions.remove(t)
                 print(f"removed transaction: {t.title}")
+                print(pool_pending_transactions.__len__())
             except ValueError:
                 pass
 
