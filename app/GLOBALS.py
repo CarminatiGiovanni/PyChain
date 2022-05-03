@@ -16,6 +16,6 @@ test_dict = dict(blockchain=[
 ])
 '''
 
-# b = Blockchain()  # instantiate the Blockchain object
-b = Blockchain.from_dict('''test_dict''')
+b = Blockchain()  # instantiate the Blockchain object
+# b = Blockchain.from_dict(test_dict)
 pool_pending_transactions: TransactionPoolList = TransactionPoolList()  # where all the other chains url are stored
