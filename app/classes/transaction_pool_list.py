@@ -1,4 +1,4 @@
-from . import Blockchain, Block
+from . import Block, Blockchain, Transaction
 from .. import clientios, GLOBALS
 import random
 from time import sleep
@@ -16,7 +16,6 @@ class TransactionPoolList(list):
         self.__appendCallback()
 
     def __appendCallback(self):
-        print(f"hello len: {len(self)}")
 
         # TODO: check the length of the pool pending transaction,\
         # if grater than BLock.transaction.__len__() build the block and broadcast it
@@ -36,10 +35,11 @@ class TransactionPoolList(list):
             sleep(DELAY_MILLISECONDS)  # FIXME: check if there is a better way to sleep
 
             if len(GLOBALS.b.chain) == newBlock.index:
-                GLOBALS.b.chain.append(newBlock)  # append the new block
-
                 for t in newBlock.transactions:  # remove transactions from pool
                     self.remove(t)
+                    print(f"transaction: {t.timestamp} has been removed from transactions pool")
+
+                GLOBALS.b.chain.append(newBlock)  # append the new block
 
                 clientios.emit("new_block", newBlock.to_dict())  # broadcast newBlockToOthers
             else:

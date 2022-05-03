@@ -21,10 +21,10 @@ class Transaction:
     def __str__(self) -> str:
         return "{" + f"content_type:{self.content_type},author:{self.author},title:{self.author},value:{self.value},description:{self.description},timestamp:{self.timestamp}" + "}"
 
-    def to_dict(self):
+    def to_dict(self) -> dict:
         return {'content_type': self.content_type, 'author': self.author, 'title': self.title, 'value': self.value, "description": self.description, "timestamp": self.timestamp}
 
-    def __eq__(self, t):
+    def __eq__(self, t) -> bool:
         if self.timestamp != t.timestamp \
                 or self.content_type != t.content_type \
                 or self.author != t.author \

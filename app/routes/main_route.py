@@ -40,9 +40,8 @@ def add_transaction():
         clientios.emit("new_transaction", t.to_dict())
 
         return "Transaction added to the pool", 200
-    except Exception as e:
-        print(str(e))
-        return {'Error': str(e)}, 500
+    except KeyError as e:
+        return {'KeyError': str(e)}, 500
 
 
 def transaction_input_check_function(content_type, author, title, value, description):
