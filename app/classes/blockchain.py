@@ -12,7 +12,7 @@ class Blockchain:
         return self.chain[len(self)-1]
 
     def __init__(self):
-        self.chain = []
+        self.chain = [Block(0, '', [])]
 
     def __len__(self):
         return len(self.chain)
