@@ -50,7 +50,7 @@ def new_block_(block):
 
 
 def block_check(block: Block):
-    if block.transactions.__len__() != Blockchain.BLOCK_SIZE():
+    if block.transactions.__len__() != b.BLOCK_SIZE():
         return False
 
     for t in block.transactions:
