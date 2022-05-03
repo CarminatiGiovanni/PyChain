@@ -3,6 +3,7 @@ from .config import nodes
 
 NETWORK_NODES = nodes
 
+'''
 test_dict = dict(blockchain=[
     {'index': 0, "prevHash": None, 'hash': "firstHash829", 'timestamp': 4.00, 'nonce': 0, 'transactions': [
         {'content_type': 'text', 'author': 'G. D\'Annunzio', 'title': 'Alcyone', 'value': 'Ludi del cielo\nDel mare\nDella terra e\nDegli eroi', "description": "Libro originale del 1942", "timestamp": 5.0},
@@ -13,7 +14,8 @@ test_dict = dict(blockchain=[
         {'content_type': 'text', 'author': 'G. Leopardi', 'title': 'L\'infinito', 'value': 'Sempre caro mi fu quest\'ermo colle,\ne questa siepe, che da tanta parte\ndell\'ultimo orizzonte il guardo esclude.', "description": "Sonetto di G. Leopardi", "timestamp": 5.3}
     ]},
 ])
+'''
 
 # b = Blockchain()  # instantiate the Blockchain object
-b = Blockchain.from_dict(test_dict)
+b = Blockchain.from_dict('''test_dict''')
 pool_pending_transactions: TransactionPoolList = TransactionPoolList()  # where all the other chains url are stored
