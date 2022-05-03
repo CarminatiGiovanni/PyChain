@@ -22,6 +22,11 @@ def connect_():
     return "OK", 200
 
 
+@main.route('/blockchain_length', methods=['GET'])
+def blockchain_length():
+    return f"{len(b)}", 200
+
+
 @main.route('/add_transaction', methods=['POST'])
 def add_transaction():
     r_transaction = request.get_json()

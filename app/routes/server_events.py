@@ -22,6 +22,15 @@ def new_transaction(transaction):
         clientios.emit('new_transaction', transaction)
 
 
+@serverio.on('transaction_pool')
+def transaction_pool_update(new_pool):
+    for t in new_pool:
+        transaction = Transaction.from_dict(t)
+        if transaction not in pool_pending_transactions:
+            pool_pending_transactions.append(transaction)
+            clientios.emit("new_transaction",t)
+
+
 @serverio.on('new_block')
 def new_block_(block):
     new_block: Block = Block.from_dict(block)
@@ -55,6 +64,7 @@ def new_block_(block):
         clientios.emit("new_block", new_block.to_dict())
 
         consensus_routine()
+
 
 def block_check(block: Block):
     if block.transactions.__len__() != b.BLOCK_SIZE():

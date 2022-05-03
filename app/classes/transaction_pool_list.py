@@ -1,3 +1,5 @@
+import requests
+
 from . import Block, Blockchain
 from .. import clientios, GLOBALS
 # from ..routes import consensus_routine
@@ -54,9 +56,19 @@ def consensus_routine():
         GLOBALS.b.copy(Blockchain.from_dict(new_blockchain_dict))
 
     else:
-        # ask for the blockchain length
-        pass
+        greater = {"address": "","length": -1}
+        for n in GLOBALS.NETWORK_NODES:
+            length = requests.get(n+'/blockchain_length')
+            if int(length.text) > greater['length']:
+                greater = {"address": n,"length": int(length.text)}
 
-    # broadcast transaction pool
-    # join other nodes transaction pool
+        if len(GLOBALS.b) < greater["length"]:
+            new_blockchain_dict = r.get(GLOBALS.NETWORK_NODES[randint(0, len(GLOBALS.NETWORK_NODES) - 1)])
 
+            GLOBALS.b.copy(Blockchain.from_dict(new_blockchain_dict))
+
+    t_pool_dict = []
+    for t in GLOBALS.pool_pending_transactions:
+        t_pool_dict.append(t.to_dict())
+
+    clientios.emit("transaction_pool",t_pool_dict)
