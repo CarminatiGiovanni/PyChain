@@ -8,20 +8,13 @@ class Block:
     def __init__(self, index: int, prevHash: str, transactions: list, nonce=0, hash_=None, timestamp=float(time())):
         self.index = index
         self.prevHash = prevHash
-        self.transactions = transactions  # TODO: check the transaction length
+        self.transactions = transactions
         self.nonce = nonce
         self.hash_ = hash_
         self.timestamp = timestamp
 
         if self.hash_ is None:
-            # print("---------------------------------------------")
-            # print("Creating new Block...")
-            # print(f"index:{self.index},prevHash:{self.prevHash},transactions:{len(self.transactions)},timestamp:{self.timestamp}")
-
             self._compute_hash()
-
-            # print(f"nonce:{self.nonce},hash:{self.hash_}")
-            # print("---------------------------------------------")
 
     @classmethod
     def from_dict(cls, block: dict):

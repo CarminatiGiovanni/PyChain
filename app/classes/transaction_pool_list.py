@@ -17,37 +17,24 @@ class TransactionPoolList(list):
 
     def __appendCallback(self):
 
-        # TODO: check the length of the pool pending transaction,\
-        # if grater than BLock.transaction.__len__() build the block and broadcast it
-        # with the PoET
-
-        if len(self) >= Blockchain.BLOCK_SIZE():
+        if len(self) >= Blockchain.BLOCK_SIZE():  # When the number of pending transaction is grater than the block transaction length
             DELAY_MILLISECONDS: float = random.randint(0, 3000) / 1000.0  # 0 to 3000 ms
             newBlock_transactions = []
             for i in range(Blockchain.BLOCK_SIZE()):
-                # takes two transaction to insert in the block
-                newBlock_transactions.append(self[i])
+                newBlock_transactions.append(self[i])  # takes two transaction to insert in the block
 
-            ocl = GLOBALS.b.__len__()  # old chain length
+            ocl = GLOBALS.b.__len__()  # old chain length, used as block index
 
-            newBlock = Block(ocl, GLOBALS.b.chain[ocl - 1].hash_, newBlock_transactions)
+            newBlock = Block(ocl, GLOBALS.b.last_block().hash_, newBlock_transactions)
 
             sleep(DELAY_MILLISECONDS)  # FIXME: check if there is a better way to sleep
 
-            if len(GLOBALS.b.chain) == newBlock.index:
+            if len(GLOBALS.b) == newBlock.index:
                 for t in newBlock.transactions:  # remove transactions from pool
                     try:
                         self.remove(t)
-                        print(f"transaction: {t.title} has been removed from transactions pool")
-                        print(len(self))
                     except ValueError:
                         pass
 
-                GLOBALS.b.chain.append(newBlock)  # append the new block
-
                 clientios.emit("new_block", newBlock.to_dict())  # broadcast newBlockToOthers
-            else:
-                # TODO: implement when another block has already been added
-                # when another block hash been already added
-                # bring the transaction back to the pool
-                pass
+                GLOBALS.b.chain.append(newBlock)  # append the new block
