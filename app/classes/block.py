@@ -14,14 +14,14 @@ class Block:
         self.timestamp = timestamp
 
         if self.hash_ is None:
-            print("---------------------------------------------")
-            print("Creating new Block...")
-            print(f"index:{self.index},prevHash:{self.prevHash},transactions:{len(self.transactions)},timestamp:{self.timestamp}")
+            # print("---------------------------------------------")
+            # print("Creating new Block...")
+            # print(f"index:{self.index},prevHash:{self.prevHash},transactions:{len(self.transactions)},timestamp:{self.timestamp}")
 
             self._compute_hash()
 
-            print(f"nonce:{self.nonce},hash:{self.hash_}")
-            print("---------------------------------------------")
+            # print(f"nonce:{self.nonce},hash:{self.hash_}")
+            # print("---------------------------------------------")
 
     @classmethod
     def from_dict(cls, block: dict):

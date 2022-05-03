@@ -44,7 +44,11 @@ def new_block_(block):
             return
 
         for t in new_block.transactions:
-            pool_pending_transactions.remove(t)
+            try:
+                pool_pending_transactions.remove(t)
+                print(f"removed transaction: ")
+            except ValueError:
+                pass
 
         b.chain.append(new_block)
         clientios.emit("new_block", new_block.to_dict())

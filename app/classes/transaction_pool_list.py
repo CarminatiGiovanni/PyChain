@@ -36,8 +36,11 @@ class TransactionPoolList(list):
 
             if len(GLOBALS.b.chain) == newBlock.index:
                 for t in newBlock.transactions:  # remove transactions from pool
-                    self.remove(t)
-                    print(f"transaction: {t.timestamp} has been removed from transactions pool")
+                    try:
+                        self.remove(t)
+                        print(f"transaction: {t.title} has been removed from transactions pool")
+                    except ValueError:
+                        pass
 
                 GLOBALS.b.chain.append(newBlock)  # append the new block
 
