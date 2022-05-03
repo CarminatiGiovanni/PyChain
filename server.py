@@ -1,7 +1,7 @@
 from app import create_app, serverio
-from app.config import PORT
+from app.config import PORT, template_folder, static_folder
 
-app = create_app(debug=True, template_folder="template", static_folder="public")
+app = create_app(debug=True, template_folder=template_folder, static_folder=static_folder)
 
 if __name__ == '__main__':
     try:
