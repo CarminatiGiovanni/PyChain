@@ -32,7 +32,7 @@ def add_transaction():
         value = r_transaction['value']
         description = r_transaction['description']
 
-        transaction_input_check_function(content_type, author, title, value, description)
+        transaction_input_check_function(content_type, author, title, value, description)  # raise an error in case of wrong input
 
         t = Transaction(content_type, author, title, value, description, time())
         clientios.emit("new_transaction", t.to_dict())
@@ -40,8 +40,8 @@ def add_transaction():
         pool_pending_transactions.append(t)
 
         return "Transaction added to the pool", 200
-    except KeyError as e:
-        return {'KeyError': str(e)}, 500
+    except Exception as e:
+        return {'Error': str(e)}, 500
 
 
 def transaction_input_check_function(content_type, author, title, value, description):

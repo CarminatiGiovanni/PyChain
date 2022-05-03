@@ -16,7 +16,7 @@ def connection():
 @serverio.on('new_transaction')
 def new_transaction(transaction):
     t = Transaction.from_dict(transaction)
-    if t not in pool_pending_transactions:
+    if t not in pool_pending_transactions and t not in b.last_block().transactions:
         pool_pending_transactions.append(t)
         clientios.emit('new_transaction', transaction)
 
@@ -62,7 +62,7 @@ def block_check(block: Block):
         if t not in pool_pending_transactions:
             return False
 
-    if b.chain[len(b.chain)-1].hash != block.prevHash:
+    if b.last_block().hash != block.prevHash:
         return False
 
     return True
