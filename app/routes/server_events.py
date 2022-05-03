@@ -1,8 +1,6 @@
-from flask_socketio import emit, join_room, leave_room
-from .. import serverio
-from ..classes import Transaction, Block, Blockchain
+from .. import serverio, clientios
+from ..classes import Transaction, Block
 from ..GLOBALS import pool_pending_transactions, b
-from .. import clientios
 
 
 @serverio.on('message')
@@ -46,7 +44,7 @@ def new_block_(block):
             return
 
         b.chain.append(new_block)
-        clientios.emit("new_block",new_block.to_dict())
+        clientios.emit("new_block", new_block.to_dict())
 
 
 def block_check(block: Block):

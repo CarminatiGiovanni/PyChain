@@ -1,4 +1,3 @@
-from flask import request, jsonify
 from . import diagnostic
 from ..GLOBALS import b, NETWORK_NODES, pool_pending_transactions
 from .. import clientios

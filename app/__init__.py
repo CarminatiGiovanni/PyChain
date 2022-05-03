@@ -1,4 +1,4 @@
-from flask import Flask, url_for
+from flask import Flask
 from flask_socketio import SocketIO
 from .client_ios import ClientIOS
 

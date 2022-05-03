@@ -13,9 +13,9 @@ class TransactionPoolList(list):
 
     def append(self, t):
         super().append(t)
-        self.__appendCallback(t)
+        self.__appendCallback()
 
-    def __appendCallback(self, t):
+    def __appendCallback(self):
         print(f"hello len: {len(self)}")
 
         # TODO: check the length of the pool pending transaction,\
@@ -47,4 +47,3 @@ class TransactionPoolList(list):
                 # when another block hash been already added
                 # bring the transaction back to the pool
                 pass
-

@@ -1,4 +1,4 @@
-from flask import request, jsonify
+from flask import request
 from . import main
 from ..GLOBALS import b, NETWORK_NODES, pool_pending_transactions
 from .. import clientios
@@ -52,9 +52,3 @@ def transaction_input_check_function(content_type, author, title, value, descrip
         raise(Exception('Input error'))
     else:
         return
-
-'''
-@main.route('/diagnostic/socket_connection', methods=['GET', 'POST'])
-def socket_connection():
-    return clientios.to_dict(), 200
-'''
