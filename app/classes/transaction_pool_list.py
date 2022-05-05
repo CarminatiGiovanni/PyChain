@@ -8,6 +8,7 @@ from random import randint
 import random
 from time import sleep
 from threading import Thread
+import sys
 
 
 class TransactionPoolList(list):
@@ -26,6 +27,11 @@ class TransactionPoolList(list):
 
         if len(self) >= Blockchain.BLOCK_SIZE() and not self.consensus_thread.is_alive():  # When the number of pending transaction is grater than the block transaction length
             print("running thread")
+            try:
+                self.consensus_thread.join()
+            except RuntimeError:  # cannot join thread before it is started
+                pass
+            self.consensus_thread = Thread(target=self.__wait_consensus_thread)  # Thread must be recreated
             self.consensus_thread.start()
             print("thread is now running")
 
@@ -52,6 +58,8 @@ class TransactionPoolList(list):
             GLOBALS.b.chain.append(newBlock)  # append the new block
 
             consensus_routine()
+
+        sys.exit()
 
 def consensus_routine():
     # call is valid
