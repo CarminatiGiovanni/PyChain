@@ -27,7 +27,6 @@ class ClientIOS:
                 print("impossible connect to " + node + '\n' + str(e))
 
     def emit(self, call, message):
-        print(str(message))
         if message is None:
             return
         for c in self.ios:

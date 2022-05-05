@@ -7,6 +7,7 @@ import requests as r
 from random import randint
 import random
 from time import sleep
+from threading import Thread
 
 
 class TransactionPoolList(list):
@@ -15,6 +16,7 @@ class TransactionPoolList(list):
         if pool is None:
             pool = []
         super().extend(pool)
+        self.consensus_thread = Thread(target=self.__wait_consensus_thread)
 
     def append(self, t):
         super().append(t)
@@ -22,31 +24,32 @@ class TransactionPoolList(list):
 
     def __appendCallback(self):
 
-        if len(self) >= Blockchain.BLOCK_SIZE():  # When the number of pending transaction is grater than the block transaction length
-            DELAY_MILLISECONDS: float = random.randint(0, 3000) / 1000.0  # 0 to 3000 ms
-            newBlock_transactions = []
-            for i in range(Blockchain.BLOCK_SIZE()):
-                newBlock_transactions.append(self[i])  # takes two transaction to insert in the block
+        if len(self) >= Blockchain.BLOCK_SIZE() and not self.consensus_thread.is_alive():  # When the number of pending transaction is grater than the block transaction length
+            self.consensus_thread.run()
 
-            ocl = GLOBALS.b.__len__()  # old chain length, used as block index
+    def __wait_consensus_thread(self):
+        DELAY_MILLISECONDS: float = random.randint(0, 3000) / 1000.0  # 0 to 3000 ms
+        newBlock_transactions = []
+        for i in range(Blockchain.BLOCK_SIZE()):
+            newBlock_transactions.append(self[i])  # takes two transaction to insert in the block
 
-            newBlock = Block(ocl, GLOBALS.b.last_block().hash_, newBlock_transactions)
+        ocl = GLOBALS.b.__len__()  # old chain length, used as block index
 
-            print('GOing to sleep for: ' + str(DELAY_MILLISECONDS) + "s")
-            sleep(DELAY_MILLISECONDS)  # FIXME: check if there is a better way to sleep
+        newBlock = Block(ocl, GLOBALS.b.last_block().hash_, newBlock_transactions)
 
-            if len(GLOBALS.b) == newBlock.index:
-                for t in newBlock.transactions:  # remove transactions from pool
-                    try:
-                        self.remove(t)
-                    except ValueError:
-                        pass
+        sleep(DELAY_MILLISECONDS)  # FIXME: check if there is a better way to sleep
 
-                clientios.emit("new_block", newBlock.to_dict())  # broadcast newBlockToOthers
-                GLOBALS.b.chain.append(newBlock)  # append the new block
+        if len(GLOBALS.b) == newBlock.index:
+            for t in newBlock.transactions:  # remove transactions from pool
+                try:
+                    self.remove(t)
+                except ValueError:
+                    pass
 
-                consensus_routine()
+            clientios.emit("new_block", newBlock.to_dict())  # broadcast newBlockToOthers
+            GLOBALS.b.chain.append(newBlock)  # append the new block
 
+            consensus_routine()
 
 def consensus_routine():
     # call is valid
