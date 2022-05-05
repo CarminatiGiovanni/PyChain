@@ -76,7 +76,7 @@ def block_check(block: Block):
         if t not in pool_pending_transactions:
             return False
 
-    if b.last_block().hash != block.prevHash:
+    if b.last_block().hash_ != block.prevHash:
         return False
 
     return True
