@@ -32,6 +32,7 @@ class TransactionPoolList(list):
 
             newBlock = Block(ocl, GLOBALS.b.last_block().hash_, newBlock_transactions)
 
+            print('GOing to sleep for: ' + str(DELAY_MILLISECONDS) + "s")
             sleep(DELAY_MILLISECONDS)  # FIXME: check if there is a better way to sleep
 
             if len(GLOBALS.b) == newBlock.index:
@@ -71,4 +72,5 @@ def consensus_routine():
     for t in GLOBALS.pool_pending_transactions:
         t_pool_dict.append(t.to_dict())
 
+    print('emitting transaction_pool')
     clientios.emit("transaction_pool",t_pool_dict)
