@@ -26,14 +26,12 @@ class TransactionPoolList(list):
     def __appendCallback(self):
 
         if len(self) >= Blockchain.BLOCK_SIZE() and not self.consensus_thread.is_alive():  # When the number of pending transaction is grater than the block transaction length
-            print("running thread")
             try:
                 self.consensus_thread.join()
             except RuntimeError:  # cannot join thread before it is started
                 pass
             self.consensus_thread = Thread(target=self.__wait_consensus_thread)  # Thread must be recreated
             self.consensus_thread.start()
-            print("thread is now running")
 
     def __wait_consensus_thread(self):
         DELAY_MILLISECONDS: float = random.randint(0, 3000) / 1000.0  # 0 to 3000 ms

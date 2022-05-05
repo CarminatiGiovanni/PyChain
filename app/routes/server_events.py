@@ -18,9 +18,7 @@ def connection():
 def new_transaction(transaction):
     t = Transaction.from_dict(transaction)
     if t not in pool_pending_transactions and t not in b.last_block().transactions:
-        print('appending transaction (from socket)')
         pool_pending_transactions.append(t)
-        print("transaction from socket appended")
         clientios.emit('new_transaction', transaction)
 
 
@@ -57,8 +55,6 @@ def new_block_(block):
         for t in new_block.transactions:
             try:
                 pool_pending_transactions.remove(t)
-                print(f"removed transaction: {t.title}")
-                print(pool_pending_transactions.__len__())
             except ValueError:
                 pass
 
