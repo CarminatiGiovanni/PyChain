@@ -2,7 +2,7 @@ from flask import request
 from . import main
 from ..GLOBALS import b, NETWORK_NODES, pool_pending_transactions
 from .. import clientios
-from ..classes.transaction import Transaction, log
+from ..classes import Transaction, log
 from time import time
 
 

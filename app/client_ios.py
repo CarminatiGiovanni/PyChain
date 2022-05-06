@@ -1,5 +1,4 @@
 from socketio import Client
-from .classes import log
 
 
 class ClientIOS:
@@ -34,7 +33,8 @@ class ClientIOS:
             try:
                 c.emit(call, message)
             except Exception as e:
-                log(str(e))
+                print(f'\x1b[30;41m {str(e)} \x1b[0m')
+                #log(str(e))
 
 
     def to_dict(self) -> dict:
