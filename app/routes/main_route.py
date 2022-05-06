@@ -2,7 +2,7 @@ from flask import request
 from . import main
 from ..GLOBALS import b, NETWORK_NODES, pool_pending_transactions
 from .. import clientios
-from ..classes.transaction import Transaction
+from ..classes.transaction import Transaction, log
 from time import time
 
 
@@ -12,7 +12,7 @@ def index():
     try:
         return b.to_dict(), 200
     except Exception as e:
-        print(str(e))
+        log(str(e))
         return str(e), 200
 
 

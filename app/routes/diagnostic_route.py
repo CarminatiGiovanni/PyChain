@@ -1,17 +1,17 @@
 from . import diagnostic
 from ..GLOBALS import b, NETWORK_NODES, pool_pending_transactions
 from .. import clientios
-from ..classes.common import list_to_dict
+from ..classes import list_to_dict, log
 
 
 @diagnostic.route('/blockchain', methods=['GET', 'POST'])
 def blockchain():
     """ main form """
     try:
-        print(b.to_dict())
+        log(b.to_dict())
         return b.to_dict(), 200
     except Exception as e:
-        print(str(e))
+        log(str(e))
         return str(e), 200
 
 

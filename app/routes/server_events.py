@@ -1,17 +1,12 @@
 from .. import serverio, clientios
 from ..classes import Transaction, Block
 from ..GLOBALS import pool_pending_transactions, b
-from ..classes import consensus_routine
-
-
-@serverio.on('message')
-def message(msg):
-    print(msg)
+from ..classes import consensus_routine, log
 
 
 @serverio.event
 def connection():
-    print('A user has connected')
+    log('A user has connected')
 
 
 @serverio.on('new_transaction')
@@ -36,7 +31,7 @@ def new_block_(block):
     new_block: Block = Block.from_dict(block)
 
     if new_block is None:
-        print('ERROR new block is None')
+        log('ERROR new block is None')
         return
 
     if new_block in b.chain:

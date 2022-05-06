@@ -1,4 +1,5 @@
 from socketio import Client
+from .classes import log
 
 
 class ClientIOS:
@@ -30,7 +31,11 @@ class ClientIOS:
         if message is None:
             return
         for c in self.ios:
-            c.emit(call, message)
+            try:
+                c.emit(call, message)
+            except Exception as e:
+                log(str(e))
+
 
     def to_dict(self) -> dict:
         d: dict = {}

@@ -83,5 +83,4 @@ def consensus_routine():
     for t in GLOBALS.pool_pending_transactions:
         t_pool_dict.append(t.to_dict())
 
-    print('emitting transaction_pool')
     clientios.emit("transaction_pool",t_pool_dict)
