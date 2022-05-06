@@ -1,6 +1,6 @@
 import requests
 
-from . import Block, Blockchain
+from . import Block, Blockchain, log
 from .. import clientios, GLOBALS
 # from ..routes import consensus_routine
 import requests as r
@@ -63,21 +63,31 @@ def consensus_routine():
     # call is valid
     if not GLOBALS.b.is_valid():
 
-        new_blockchain_dict = r.get(GLOBALS.NETWORK_NODES[randint(0,len(GLOBALS.NETWORK_NODES) -1)])
+        try:
+            new_blockchain_dict = r.get(GLOBALS.NETWORK_NODES[randint(0,len(GLOBALS.NETWORK_NODES) -1)])
 
-        GLOBALS.b.copy(Blockchain.from_dict(new_blockchain_dict))
+            GLOBALS.b.copy(Blockchain.from_dict(new_blockchain_dict))
+
+        except Exception as e:
+            log(str(e))
 
     else:
         greater = {"address": "","length": -1}
         for n in GLOBALS.NETWORK_NODES:
-            length = requests.get(n+'/blockchain_length')
-            if int(length.text) > greater['length']:
-                greater = {"address": n,"length": int(length.text)}
+            try:
+                length = r.get(n+'/blockchain_length')
+                if int(length.text) > greater['length']:
+                    greater = {"address": n,"length": int(length.text)}
+            except Exception as e:
+                log(str(e))
 
         if len(GLOBALS.b) < greater["length"]:
-            new_blockchain_dict = r.get(GLOBALS.NETWORK_NODES[randint(0, len(GLOBALS.NETWORK_NODES) - 1)])
+            try:
+                new_blockchain_dict = r.get(GLOBALS.NETWORK_NODES[randint(0, len(GLOBALS.NETWORK_NODES) - 1)])
 
-            GLOBALS.b.copy(Blockchain.from_dict(new_blockchain_dict))
+                GLOBALS.b.copy(Blockchain.from_dict(new_blockchain_dict))
+            except Exception as e:
+                log(str(e))
 
     t_pool_dict = []
     for t in GLOBALS.pool_pending_transactions:
