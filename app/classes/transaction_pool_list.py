@@ -59,6 +59,7 @@ class TransactionPoolList(list):
 
         sys.exit()
 
+
 def consensus_routine():
     # call is valid
     if not GLOBALS.b.is_valid():
@@ -84,8 +85,7 @@ def consensus_routine():
         if len(GLOBALS.b) < greater["length"]:
             try:
                 new_blockchain_dict = r.get(GLOBALS.NETWORK_NODES[randint(0, len(GLOBALS.NETWORK_NODES) - 1)])
-
-                GLOBALS.b.copy(Blockchain.from_dict(new_blockchain_dict))
+                GLOBALS.b.copy(Blockchain.from_dict(new_blockchain_dict.json()))
             except Exception as e:
                 log(str(e))
 
