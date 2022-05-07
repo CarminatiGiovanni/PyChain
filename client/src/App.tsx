@@ -1,12 +1,25 @@
-import React, { MouseEventHandler } from "react";
+import React, {useState} from "react";
 
 
 class App extends React.Component {
 
+  constructor(props: any){
+    super(props)
+    const [address, setAddress] = useState('') // TODO: fix error
+  }
+
   handleSubmit = (e: React.MouseEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    console.log((e.currentTarget.elements.namedItem("server address") as HTMLInputElement).value)
+    const url_regex = "((http|https)://)(www.)?"
+    + "[a-zA-Z0-9@:%._\\+~#?&//=]{2,256}\\.[a-z]"
+    + "{2,6}\\b([-a-zA-Z0-9@:%._\\+~#?&//=]*)"
+
+    const address = (e.currentTarget.elements.namedItem("server address") as HTMLInputElement).value
+
+    if(address.match(url_regex) != null){
+
+    }
   }
 
   render() {
