@@ -1,7 +1,7 @@
 import React, {useState, createContext} from "react";
 
 import ServerAddress from './server_address';
-
+import DiagnosticTool from './DiagnosticTool'
 
 type TypeCreateServerContext = {serverAddress: string | null, setServerAddress: React.Dispatch<React.SetStateAction<string>> | null}
 
@@ -14,6 +14,7 @@ export const App = (props: any) => {
   return (
     <ServerAddressContext.Provider value={{serverAddress,setServerAddress}}>
       <ServerAddress />
+      <DiagnosticTool />
     </ServerAddressContext.Provider>
   );
 }

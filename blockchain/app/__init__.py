@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_socketio import SocketIO
 from .client_ios import ClientIOS
+from flask_cors import CORS
 
 clientios: ClientIOS = ClientIOS()
 
@@ -16,6 +17,7 @@ def before_first_request():
 def create_app(debug=False, template_folder="", static_folder=""):
     """Create app object"""
     app = Flask(__name__, template_folder=template_folder, static_folder=static_folder)
+    CORS(app)
     app.debug = debug
     app.config['SECRET_KEY'] = "6967979699829"
     app.before_first_request(before_first_request)

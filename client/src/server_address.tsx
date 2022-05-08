@@ -1,8 +1,7 @@
-import React, {useState, useEffect, useContext} from "react";
+import React, {useEffect, useContext} from "react";
 import {ServerAddressContext} from "./App"
+import './style/css/server_address.css'
 
-
-type Ciaone = {serverAddress: string | null, setServerAddress: React.Dispatch<React.SetStateAction<string>> | null}
 
 const ServerAddress = (props: any) => {
 
@@ -21,7 +20,7 @@ const ServerAddress = (props: any) => {
         const address = (e.currentTarget.elements.namedItem("server address") as HTMLInputElement).value
         
         if(address.match(url_regex) != null){
-            setServerAddress ? setServerAddress(address) : null
+           if (setServerAddress)setServerAddress(address)
         }
   }
 
@@ -29,7 +28,7 @@ const ServerAddress = (props: any) => {
     <div className="App">
       <form onSubmit={handleSubmit}>
         <input id="server_address" name="server address" placeholder="Server address:" type="text"/>
-        <input id="submit_button" type="submit" placeholder="Save"/>
+        <input id="submit_button" type="submit" placeholder="Save" className="button-9"/>
       </form>
     </div>
   );
