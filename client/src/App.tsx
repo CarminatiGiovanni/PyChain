@@ -1,37 +1,19 @@
-import React, {useState} from "react";
+import React, {useState, createContext} from "react";
+
+import ServerAddress from './server_address';
 
 
-class App extends React.Component {
+type TypeCreateServerContext = {serverAddress: string | null, setServerAddress: React.Dispatch<React.SetStateAction<string>> | null}
 
-  constructor(props: any){
-    super(props)
-    const [address, setAddress] = useState('') // TODO: fix error
-  }
+export const ServerAddressContext = createContext<TypeCreateServerContext>({serverAddress: null,setServerAddress: null})
 
-  handleSubmit = (e: React.MouseEvent<HTMLFormElement>) => {
-    e.preventDefault()
+export const App = (props: any) => {
 
-    const url_regex = "((http|https)://)(www.)?"
-    + "[a-zA-Z0-9@:%._\\+~#?&//=]{2,256}\\.[a-z]"
-    + "{2,6}\\b([-a-zA-Z0-9@:%._\\+~#?&//=]*)"
+  const [serverAddress,setServerAddress] = useState('')
 
-    const address = (e.currentTarget.elements.namedItem("server address") as HTMLInputElement).value
-
-    if(address.match(url_regex) != null){
-
-    }
-  }
-
-  render() {
-      return (
-        <div className="App">
-          <form onSubmit={this.handleSubmit}>
-            <input id="server_address" name="server address" placeholder="Server address:" type="text"/>
-            <input id="submit_button" type="submit" placeholder="Save"/>
-          </form>
-        </div>
-      );
-  }
+  return (
+    <ServerAddressContext.Provider value={{serverAddress,setServerAddress}}>
+      <ServerAddress />
+    </ServerAddressContext.Provider>
+  );
 }
-
-export default App
