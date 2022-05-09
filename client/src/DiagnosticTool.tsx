@@ -1,27 +1,7 @@
 import {useState, useContext, useEffect} from "react";
 import { ServerAddressContext } from "./App";
-import "./style/css/block.css"
-
-interface TransactionInterface{
-    content_type: string,
-    author: string,
-    title: string,
-    value: string,
-    description: string
-}
-
-interface BlockInterface{
-  index: number,
-  hash: string,
-  transaction: TransactionInterface[],
-  nonce: number,
-  prevHash: string,
-  timestamp: number
-}
-
-interface BlockchainJSONInterface {
-  blockchain: BlockInterface[]
-}
+import { BlockchainJSONInterface } from "./classes";
+import { Block } from "./components/Block";
 
 const DiagnosticTool = (props: any) => {
 
@@ -44,13 +24,9 @@ const DiagnosticTool = (props: any) => {
   return (
     <>
         {
-          ((blockchain as BlockchainJSONInterface)['blockchain']).map((block: BlockInterface) => {
+          ((blockchain as BlockchainJSONInterface)['blockchain']).map((block) => {
             return (
-              <div key={block.index}>
-                <p className="index">index: {block.index}</p>
-                <p className="prevHash">prevHash: {block.prevHash}</p>
-                <p className="timestamp">timestamp: {block.timestamp}</p>
-              </div>
+              <Block key={block.index} block = {block}/>
             )
           })
         }
