@@ -1,5 +1,6 @@
 import {useState, useContext, useEffect} from "react";
 import { ServerAddressContext } from "./App";
+import "./style/css/block.css"
 
 interface TransactionInterface{
     content_type: string,
@@ -45,7 +46,11 @@ const DiagnosticTool = (props: any) => {
         {
           ((blockchain as BlockchainJSONInterface)['blockchain']).map((block: BlockInterface) => {
             return (
-              <div key={block.index}>Block</div>
+              <div key={block.index}>
+                <p className="index">index: {block.index}</p>
+                <p className="prevHash">prevHash: {block.prevHash}</p>
+                <p className="timestamp">timestamp: {block.timestamp}</p>
+              </div>
             )
           })
         }
