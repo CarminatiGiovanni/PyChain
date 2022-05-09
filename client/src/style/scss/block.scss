@@ -3,6 +3,14 @@ div.block{
     width: fit-content;
     border-radius: 10px;
     padding: 10px;
+    margin-top: 10px;
+    margin-left: 20px;
+    background-color: white;
+}
+
+div.container{
+    display: flex;
+    flex-wrap: wrap;
 }
 
 p.hash{

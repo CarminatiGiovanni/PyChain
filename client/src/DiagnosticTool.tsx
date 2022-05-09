@@ -2,6 +2,8 @@ import {useState, useContext, useEffect} from "react";
 import { ServerAddressContext } from "./App";
 import { BlockchainJSONInterface } from "./classes";
 import { Block } from "./components/Block";
+import './style/css/server_address.css'
+import './style/css/block.css'
 
 const DiagnosticTool = (props: any) => {
 
@@ -9,8 +11,8 @@ const DiagnosticTool = (props: any) => {
 
   const [blockchain,setBlockchain] = useState<BlockchainJSONInterface>({blockchain: []})
 
-  useEffect(() => {
-      if(serverAddress === null || serverAddress === '') return
+  const refresh = () => {
+    if(serverAddress === null || serverAddress === '') return
 
       fetch(serverAddress,{
         method: 'POST',
@@ -19,17 +21,22 @@ const DiagnosticTool = (props: any) => {
           'Access-Control-Allow-Origin':'*'
         }
       }).then(res => res.json()).then(json => setBlockchain(json)).catch(e => console.log(e))
-  },[serverAddress])
+  }
+
+  useEffect(refresh,[serverAddress])
 
   return (
     <>
+        <button className="button-9" onClick={refresh}> refresh</button>
+        <div className="container">
         {
-          ((blockchain as BlockchainJSONInterface)['blockchain']).map((block) => {
+          ((blockchain as BlockchainJSONInterface)['blockchain']).slice().reverse().map((block) => {
             return (
               <Block key={block.index} block = {block}/>
             )
           })
         }
+        </div>
     </>
   );
 }
