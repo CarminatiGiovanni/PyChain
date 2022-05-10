@@ -12,6 +12,8 @@ const DiagnosticTool = (props: any) => {
   const [blockchain,setBlockchain] = useState<BlockchainJSONInterface>({blockchain: []})
 
   const refresh = () => {
+    setBlockchain({blockchain:[]})
+
     if(serverAddress === null || serverAddress === '') return
 
       let params = {}
