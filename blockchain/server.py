@@ -5,6 +5,6 @@ app = create_app(debug=True, template_folder=template_folder, static_folder=stat
 
 if __name__ == '__main__':
     try:
-        serverio.run(app, port=PORT)
+        serverio.run(app,host= "0.0.0.0", port=PORT)
     except Exception as e:
         print(str(e))

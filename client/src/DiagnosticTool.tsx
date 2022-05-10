@@ -14,13 +14,19 @@ const DiagnosticTool = (props: any) => {
   const refresh = () => {
     if(serverAddress === null || serverAddress === '') return
 
-      fetch(serverAddress,{
-        method: 'POST',
-        mode:'cors',
-        headers: {
-          'Access-Control-Allow-Origin':'*'
+      let params = {}
+      
+      if(serverAddress.substring(7,15) === 'localhost' || serverAddress.substring(7,15) === '127.0.0.1'){
+        params = {
+          method: 'POST',
+          mode:'cors',
+          headers: {
+            'Access-Control-Allow-Origin':'*'
+          }
         }
-      }).then(res => res.json()).then(json => setBlockchain(json)).catch(e => console.log(e))
+      }else params = {method:'POST'}        
+
+      fetch(serverAddress,params).then(res => res.json()).then(json => setBlockchain(json)).catch(e => console.log(e))
   }
 
   useEffect(refresh,[serverAddress])
