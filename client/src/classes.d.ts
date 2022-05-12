@@ -3,7 +3,8 @@ export interface TransactionInterface{
     author: string,
     title: string,
     value: string,
-    description: string
+    description: string,
+    timestamp: number
 }
 
 export interface BlockInterface{
