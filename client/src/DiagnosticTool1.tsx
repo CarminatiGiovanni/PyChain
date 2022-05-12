@@ -7,7 +7,7 @@ import './style/css/block.css'
 
 const DiagnosticTool1 = (props: any) => {
 
-  const {serverAddress} = useContext(ServerAddressContext)
+  const {serverAddress,triggerRefresh} = useContext(ServerAddressContext)
 
   const [blockchain,setBlockchain] = useState<BlockchainJSONInterface>({blockchain: []})
 
@@ -31,7 +31,7 @@ const DiagnosticTool1 = (props: any) => {
       fetch(serverAddress,params).then(res => res.json()).then(json => setBlockchain(json)).catch(e => console.log(e))
   }
 
-  useEffect(refresh,[serverAddress])
+  useEffect(refresh,[serverAddress,triggerRefresh])
 
   return (
     <>

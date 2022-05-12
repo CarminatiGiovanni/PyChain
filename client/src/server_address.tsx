@@ -1,16 +1,11 @@
-import React, {useEffect, useContext} from "react";
+import React, {useContext} from "react";
 import {ServerAddressContext} from "./App"
 import './style/css/server_address.css'
 
 
 const ServerAddress = (props: any) => {
 
-    const {serverAddress, setServerAddress} = useContext(ServerAddressContext)
-
-    useEffect(() => {
-        console.log(serverAddress)
-    },[serverAddress])
-
+    const {serverAddress, setServerAddress,triggerRefresh, setTriggerRefresh} = useContext(ServerAddressContext)
 
     function handleSubmit(e: React.MouseEvent<HTMLFormElement>){
         e.preventDefault()
@@ -28,8 +23,7 @@ const ServerAddress = (props: any) => {
     <div className="App">
       <form onSubmit={handleSubmit}>
         <input id="server_address" name="server address" placeholder="Server address:" type="text"/>
-        <input id="submit_button" type="submit" value="send" className="button-9"/>
-        <input id="submit_button" type="submit" value="refresh" className="button-9"/>
+        <input id="submit_button" type="submit" value="refresh" className="button-9" onClick={() => {if(setTriggerRefresh)setTriggerRefresh(!triggerRefresh)}}/>
       </form>
     </div>
   );
