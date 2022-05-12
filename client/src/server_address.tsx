@@ -28,7 +28,8 @@ const ServerAddress = (props: any) => {
     <div className="App">
       <form onSubmit={handleSubmit}>
         <input id="server_address" name="server address" placeholder="Server address:" type="text"/>
-        <input id="submit_button" type="submit" placeholder="Save" className="button-9"/>
+        <input id="submit_button" type="submit" value="send" className="button-9"/>
+        <input id="submit_button" type="submit" value="refresh" className="button-9"/>
       </form>
     </div>
   );

@@ -1,7 +1,8 @@
 import React, {useState, createContext} from "react";
+import './style/css/app.css'
 
 import ServerAddress from './server_address';
-import DiagnosticTool from './DiagnosticTool'
+import DiagnosticTool1 from './DiagnosticTool1'
 
 type TypeCreateServerContext = {serverAddress: string | null, setServerAddress: React.Dispatch<React.SetStateAction<string>> | null}
 
@@ -9,12 +10,19 @@ export const ServerAddressContext = createContext<TypeCreateServerContext>({serv
 
 export const App = (props: any) => {
 
-  const [serverAddress,setServerAddress] = useState('')
+  const [serverAddress,setServerAddress] = useState<string>('')
+  const [page, setPage] = useState<string>('Blockchain')
 
   return (
     <ServerAddressContext.Provider value={{serverAddress,setServerAddress}}>
       <ServerAddress />
-      <DiagnosticTool />
+      
+      <input className="pageSelector" value="Blockchain"   name="page" type="button" onClick={() => setPage('Blockchain')}/>
+      <input className="pageSelector" value="Transactions" name="page" type="button" onClick={() => setPage('Transactions')}/>
+
+      {
+        page === 'Transactions' ? <p>Transaction</p> : <DiagnosticTool1 /> 
+      }
     </ServerAddressContext.Provider>
   );
 }

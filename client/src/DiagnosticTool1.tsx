@@ -5,7 +5,7 @@ import { Block } from "./components/Block";
 import './style/css/server_address.css'
 import './style/css/block.css'
 
-const DiagnosticTool = (props: any) => {
+const DiagnosticTool1 = (props: any) => {
 
   const {serverAddress} = useContext(ServerAddressContext)
 
@@ -35,7 +35,6 @@ const DiagnosticTool = (props: any) => {
 
   return (
     <>
-        <button className="button-9" onClick={refresh}> refresh</button>
         <div className="container">
         {
           ((blockchain as BlockchainJSONInterface)['blockchain']).slice().reverse().map((block) => {
@@ -49,4 +48,4 @@ const DiagnosticTool = (props: any) => {
   );
 }
 
-export default DiagnosticTool
+export default DiagnosticTool1
