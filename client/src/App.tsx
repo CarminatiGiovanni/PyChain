@@ -1,34 +1,33 @@
-import React, {useState, createContext} from "react";
+import React, {useState, createContext, useEffect} from "react";
 import './style/css/app.css'
 
 import ServerAddress from './server_address';
-import DiagnosticTool1 from './DiagnosticTool1'
+import Blockchain from './Blockchain'
 import {Tabs,Tab} from 'react-bootstrap'
+import TransactionTab from './TransactionTab'
 
-type TypeCreateServerContext = {serverAddress: string | null, setServerAddress: React.Dispatch<React.SetStateAction<string>> | null, triggerRefresh: boolean | null, setTriggerRefresh: React.Dispatch<React.SetStateAction<boolean>> | null,}
+import { BlockchainJSONInterface } from "./classes";
 
-export const ServerAddressContext = createContext<TypeCreateServerContext>({serverAddress: null,setServerAddress: null, triggerRefresh: null, setTriggerRefresh: null})
+type TypeBlockchainContext = {blockchain: BlockchainJSONInterface | null, setBlockchain: React.Dispatch<React.SetStateAction<BlockchainJSONInterface>> | null}
+
+export const BlockchainContext = createContext<TypeBlockchainContext>({blockchain: null, setBlockchain: null})
 
 export const App = (props: any) => {
 
-  const [serverAddress,setServerAddress] = useState<string>('')
-  const [triggerRefresh,setTriggerRefresh] = useState<boolean>(false)
-  const [page, setPage] = useState<string>('Blockchain')
+  const [blockchain,setBlockchain] = useState<BlockchainJSONInterface>({blockchain: []})
 
   return (
-
-    <ServerAddressContext.Provider value={{serverAddress,setServerAddress,triggerRefresh,setTriggerRefresh}}>
+    <BlockchainContext.Provider value={{blockchain,setBlockchain}}>
       <ServerAddress />
 
       <Tabs defaultActiveKey="Blockchain" id="uncontrolled-tab-example" className="mb-3">
         <Tab eventKey="Blockchain" title="Blockchain">
-          <DiagnosticTool1 /> 
+          <Blockchain /> 
         </Tab>
         <Tab eventKey="Transaction" title="Transaction">
-          Transaction
+          <TransactionTab/>
         </Tab>
       </Tabs>
-
-    </ServerAddressContext.Provider>
+    </BlockchainContext.Provider>
   );
 }

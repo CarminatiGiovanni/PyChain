@@ -1,11 +1,38 @@
-import React, {useContext} from "react";
-import {ServerAddressContext} from "./App"
+import React, {useContext, useState, useEffect} from "react";
+import {BlockchainContext} from "./App"
 import './style/css/server_address.css'
 
 
 const ServerAddress = (props: any) => {
 
-    const {serverAddress, setServerAddress,triggerRefresh, setTriggerRefresh} = useContext(ServerAddressContext)
+    const {blockchain, setBlockchain} = useContext(BlockchainContext)
+
+    const [serverAddress,setServerAddress] = useState<string>('')
+    const [triggerRefresh,setTriggerRefresh] = useState<boolean>(false)
+
+    const refresh = () => {
+      if(setBlockchain)
+        setBlockchain({blockchain:[]})
+      else return
+  
+      if(serverAddress === null || serverAddress === '') return
+  
+        let params = {}
+        
+        if(serverAddress.substring(7,15) === 'localhost' || serverAddress.substring(7,15) === '127.0.0.1'){
+          params = {
+            method: 'POST',
+            mode:'cors',
+            headers: {
+              'Access-Control-Allow-Origin':'*'
+            }
+          }
+        }else params = {method:'POST'}        
+  
+        fetch(serverAddress,params).then(res => res.json()).then(json => setBlockchain(json)).catch(e => console.log(e))
+    }
+  
+    useEffect(refresh,[serverAddress,triggerRefresh])
 
     function handleSubmit(e: React.MouseEvent<HTMLFormElement>){
         e.preventDefault()
