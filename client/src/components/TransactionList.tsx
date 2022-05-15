@@ -3,7 +3,7 @@ import Transaction from "./Transaction";
 
 const TransactionList = ({transactions} : {transactions: TransactionInterface[]}) => {
     return(
-        <div className="container">
+        <div className="d-grid gap-2">
             {
                     transactions.map((t,index) => {
                     const {author,value,title,timestamp} = t
