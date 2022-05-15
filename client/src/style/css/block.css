@@ -1,4 +1,4 @@
-div.block {
+.block {
   border: 5px solid red;
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -25,7 +25,7 @@ p.hash {
   color: white;
   background-color: red;
   padding: 4px;
-  margin-top: -10px;
+  margin-top: -5px;
   margin-left: -10px;
   margin-right: -10px;
 }

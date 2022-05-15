@@ -1,17 +1,18 @@
 import { TransactionInterface } from "./../classes";
+import Transaction from "./Transaction";
 
 const TransactionList = ({transactions} : {transactions: TransactionInterface[]}) => {
     return(
-        <>
-       {
-            transactions.map((t,index) => {
-               const {author,value,title,timestamp} = t
-               return(
-                   <p key={index}>a</p>
-               )
-           })
-       }
-       </>
+        <div className="container">
+            {
+                    transactions.map((t,index) => {
+                    const {author,value,title,timestamp} = t
+                    return(
+                        <Transaction key={index} transaction={t} />
+                    )
+                })
+            }
+       </div>
     )
 }
 

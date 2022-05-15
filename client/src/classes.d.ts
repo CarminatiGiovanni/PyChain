@@ -10,7 +10,7 @@ export interface TransactionInterface{
 export interface BlockInterface{
   index: number,
   hash: string,
-  transaction: TransactionInterface[],
+  transactions: TransactionInterface[],
   nonce: number,
   prevHash: string,
   timestamp: number

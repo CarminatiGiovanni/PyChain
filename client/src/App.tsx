@@ -17,9 +17,6 @@ export const App = (props: any) => {
 
   return (
 
-
-
-
     <ServerAddressContext.Provider value={{serverAddress,setServerAddress,triggerRefresh,setTriggerRefresh}}>
       <ServerAddress />
 
