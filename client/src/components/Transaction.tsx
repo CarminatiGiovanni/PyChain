@@ -1,11 +1,14 @@
 import { TransactionInterface } from "../classes"
 import { Dropdown } from "react-bootstrap"
+import { useState } from "react"
 
 const Transaction = ({transaction} : {transaction: TransactionInterface}) => {
+    const [show,setShow] = useState<boolean>(false)
+
     return(
-        <Dropdown className="d-inline mx-2" autoClose="outside">
+        <Dropdown className="d-inline mx-2" show={show} onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
             <Dropdown.Toggle id="dropdown-autoclose-outside">
-            {transaction.title}
+                {transaction.title}
             </Dropdown.Toggle>
             <Dropdown.Menu>
                 <Dropdown.Item>
