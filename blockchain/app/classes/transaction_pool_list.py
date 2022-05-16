@@ -57,7 +57,10 @@ class TransactionPoolList(list):
 
             consensus_routine()
 
-        sys.exit()
+        if len(self) >= Blockchain.BLOCK_SIZE():
+            return self.__wait_consensus_thread()
+        else:
+            sys.exit()
 
 
 def consensus_routine():
