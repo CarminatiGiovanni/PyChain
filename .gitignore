@@ -1,5 +1,5 @@
 /.idea
-config.ini
+# config.ini
 .vs/
 # Byte-compiled / optimized / DLL files
 __pycache__/

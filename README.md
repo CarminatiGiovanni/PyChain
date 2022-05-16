@@ -1,8 +1,10 @@
-# libraries to intall with pip:
-    - flask
-    - flask-socketio
-    - eventlet
-    - socketio
+# getting started:
+
+ 1. git clone [https://github.com/HeyJOe03/PyChain.git](https://github.com/HeyJOe03/PyChain)
+ 2. cd PyChain (move to PyChain directory)
+ 3. pip install -r requirements.txt
+ 4. create config.ini
+ 5. python server.py
 
 # edit for each server:
     - config.ini
