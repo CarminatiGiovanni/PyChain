@@ -17,6 +17,7 @@ export interface BlockInterface{
 }
 
 export interface BlockchainJSONInterface {
-  blockchain: BlockInterface[]
+  blockchain: BlockInterface[],
+  address: string
 }
 

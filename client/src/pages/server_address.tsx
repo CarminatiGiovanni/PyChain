@@ -1,6 +1,6 @@
 import React, {useContext, useState, useEffect} from "react";
-import {BlockchainContext} from "./App"
-import './style/css/server_address.css'
+import {BlockchainContext} from "../App"
+import '../style/css/server_address.css'
 
 
 const ServerAddress = (props: any) => {
@@ -12,7 +12,7 @@ const ServerAddress = (props: any) => {
 
     const refresh = () => {
       if(setBlockchain)
-        setBlockchain({blockchain:[]})
+        setBlockchain({blockchain:[], address: serverAddress})
       else return
   
       if(serverAddress === null || serverAddress === '') return
@@ -29,7 +29,7 @@ const ServerAddress = (props: any) => {
           }
         }else params = {method:'POST'}        
   
-        fetch(serverAddress,params).then(res => res.json()).then(json => setBlockchain(json)).catch(e => console.log(e))
+        fetch(serverAddress,params).then(res => res.json()).then(json => setBlockchain({...json,address: serverAddress})).catch(e => console.log(e))
     }
   
     useEffect(refresh,[serverAddress,triggerRefresh])

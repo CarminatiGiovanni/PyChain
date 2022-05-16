@@ -1,10 +1,11 @@
 import React, {useState, createContext, useEffect} from "react";
 import './style/css/app.css'
 
-import ServerAddress from './server_address';
-import Blockchain from './Blockchain'
+import ServerAddress from './pages/server_address';
+import Blockchain from './pages/Blockchain'
 import {Tabs,Tab} from 'react-bootstrap'
-import TransactionTab from './TransactionTab'
+import TransactionTab from './pages/TransactionTab'
+import PoolPendingTransactionTab from './pages/PoolPendingTransactionTab'
 
 import { BlockchainJSONInterface } from "./classes";
 
@@ -14,7 +15,7 @@ export const BlockchainContext = createContext<TypeBlockchainContext>({blockchai
 
 export const App = (props: any) => {
 
-  const [blockchain,setBlockchain] = useState<BlockchainJSONInterface>({blockchain: []})
+  const [blockchain,setBlockchain] = useState<BlockchainJSONInterface>({blockchain: [],address:''})
 
   return (
     <BlockchainContext.Provider value={{blockchain,setBlockchain}}>
@@ -26,6 +27,9 @@ export const App = (props: any) => {
         </Tab>
         <Tab eventKey="Transaction" title="Transaction">
           <TransactionTab/>
+        </Tab>
+        <Tab eventKey="Pending Transaction" title="Pending Transaction">
+          <PoolPendingTransactionTab/>
         </Tab>
       </Tabs>
     </BlockchainContext.Provider>

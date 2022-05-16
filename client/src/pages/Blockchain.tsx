@@ -1,9 +1,9 @@
 import {useState, useContext, useEffect} from "react";
-import { BlockchainContext } from "./App";
-import { BlockchainJSONInterface } from "./classes";
-import { Block } from "./components/Block";
-import './style/css/server_address.css'
-import './style/css/block.css'
+import { BlockchainContext } from "../App";
+import { BlockchainJSONInterface } from "../classes";
+import { Block } from "../components/Block";
+import '../style/css/server_address.css'
+import '../style/css/block.css'
 
 const Blockchain = () => {
 

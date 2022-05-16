@@ -1,7 +1,7 @@
 import { useContext } from "react"
-import { BlockchainContext } from "./App"
-import { BlockInterface, TransactionInterface } from "./classes"
-import Transaction from "./components/Transaction"
+import { BlockchainContext } from "../App"
+import { BlockInterface, TransactionInterface } from "../classes"
+import Transaction from "../components/Transaction"
 
 const TransactionTab = () => {
     const {blockchain} = useContext(BlockchainContext)
