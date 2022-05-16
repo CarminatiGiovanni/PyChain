@@ -19,8 +19,11 @@ const Transaction = ({transaction} : {transaction: TransactionInterface}) => {
                         content(transaction)                    
                     }
                 </Dropdown.Item>
+                <Dropdown.Item>
+                    <b>{transaction.author}</b>
+                </Dropdown.Item>
                 <Dropdown.Item style={{color:'lightblue'}}>
-                    {(new Date(transaction.timestamp * 1000)).toDateString()}
+                    added to blockchian: {(new Date(transaction.timestamp * 1000)).toDateString()}
                 </Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
