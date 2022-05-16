@@ -5,7 +5,7 @@ import './style/css/server_address.css'
 
 const ServerAddress = (props: any) => {
 
-    const {blockchain, setBlockchain} = useContext(BlockchainContext)
+    const {setBlockchain} = useContext(BlockchainContext)
 
     const [serverAddress,setServerAddress] = useState<string>('')
     const [triggerRefresh,setTriggerRefresh] = useState<boolean>(false)

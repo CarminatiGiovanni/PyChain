@@ -1,14 +1,28 @@
-import { ListGroup } from "react-bootstrap"
+import { useContext } from "react"
+import { BlockchainContext } from "./App"
+import { BlockInterface, TransactionInterface } from "./classes"
+import Transaction from "./components/Transaction"
 
 const TransactionTab = () => {
+    const {blockchain} = useContext(BlockchainContext)
     return (
-        <ListGroup>
-            <ListGroup.Item>Cras justo odio</ListGroup.Item>
-            <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-            <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-            <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
-            <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-        </ListGroup>
+        <>
+            {
+                blockchain?.blockchain.map((b: BlockInterface) => {
+                    return(
+                        <>
+                            {
+                                b.transactions.map((t: TransactionInterface) => {
+                                    return (
+                                        <Transaction transaction={t} />
+                                    )
+                                })
+                            }
+                        </>
+                    )
+                })
+            }
+        </>
     )
 }
 

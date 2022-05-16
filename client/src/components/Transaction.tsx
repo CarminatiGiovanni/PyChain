@@ -1,21 +1,18 @@
-import { TransactionInterface } from "./../classes";
-import { Button } from "react-bootstrap";
+import { TransactionInterface } from "../classes"
+import { Dropdown } from "react-bootstrap"
+
+
 const Transaction = ({transaction} : {transaction: TransactionInterface}) => {
     return(
-        
-            <Button variant={randColor()} size="lg" disabled>
-                {transaction.title}
-            </Button>
-        
+        <Dropdown className="d-inline mx-2" autoClose="outside">
+            <Dropdown.Toggle id="dropdown-autoclose-outside">
+            {transaction.title}
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+                Hello world
+            </Dropdown.Menu>
+        </Dropdown>
     )
 }
 
 export default Transaction
-
-function randColor() : string{
-    const colors = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'dark']
-    
-    const n = Math.floor(Math.random() * colors.length) 
-
-    return colors[n]
-}
