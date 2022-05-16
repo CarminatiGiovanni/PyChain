@@ -6,7 +6,7 @@ class Blockchain:
 
     @classmethod
     def BLOCK_SIZE(cls):
-        return 2
+        return 4
 
     def copy(self, blockchain):
         self.chain = blockchain.chain

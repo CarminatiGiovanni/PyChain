@@ -19,6 +19,9 @@ const Transaction = ({transaction} : {transaction: TransactionInterface}) => {
                         content(transaction)                    
                     }
                 </Dropdown.Item>
+                <Dropdown.Item style={{color:'lightblue'}}>
+                    {(new Date(transaction.timestamp * 1000)).toDateString()}
+                </Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
     )
@@ -31,13 +34,13 @@ const content = (t: TransactionInterface) => {
         case 'text':
             return <>
                 {
-                    t.value.split('\n').map((l) => {
-                        return <>{l} <br/> </>
+                    t.value.split('\n').map((l, index) => {
+                        return <div key={index} >{l} <br/> </div>
                     })
                 }
             </>
         case 'image':
-            return <img className="d-inline-block" src={t.value} style={{maxWidth:'100%px',maxHeight: '100%'}}/>
+            return <img className="d-inline-block" src={t.value} style={{maxWidth:'100%',maxHeight: '100%'}}/>
         default:
             return <></>
     }
