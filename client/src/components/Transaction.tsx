@@ -37,7 +37,7 @@ const content = (t: TransactionInterface) => {
                 }
             </>
         case 'image':
-            return <>Image</>
+            return <img className="d-inline-block" src={t.value} style={{maxWidth:'100%px',maxHeight: '100%'}}/>
         default:
             return <></>
     }
