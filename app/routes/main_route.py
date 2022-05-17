@@ -44,7 +44,7 @@ def add_transaction():
 
         pool_pending_transactions.append(t)
 
-        return "Transaction added to the pool", 200
+        return {'status':"Transaction added to the pool"}, 200
     except Exception as e:
         return {'Error': str(e)}, 500
 
