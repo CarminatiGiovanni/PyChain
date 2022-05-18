@@ -1,3 +1,7 @@
+import os, sys
+
+sys.path.append(os.path.dirname(__file__))
+
 from app import create_app, serverio
 from app.config import PORT, template_folder, static_folder, HOST
 
